@@ -2,6 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+# function to get random starting point
+def random_point_tetra(vertices):
+    s, t, u = np.random.rand(3)
+    if s + t + u > 1:
+        s, t, u = 1 - s, 1 - t, 1 - u  # reflect into tetrahedron
+    v0, v1, v2, v3 = vertices
+    point = v0 + s*(v1 - v0) + t*(v2 - v0) + u*(v3 - v0)
+    return point
+
 # initialize tetrahedron centered at (0,0,0)
 vertices = np.array([
     [1,  1,  1],
@@ -13,7 +22,7 @@ vertices = np.array([
 # params for chaos game
 r = 0.5 # ratio for tetrahedron
 N = 20000 # number of points
-x = np.array([0.0, 0.0, 0.0])  # starting point
+x = random_point_tetra(vertices) # random starting point
 
 points = []
 labels = []

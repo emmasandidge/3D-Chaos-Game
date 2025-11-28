@@ -1,6 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from scipy.spatial import ConvexHull
+
+# function to get random starting point
+def random_point_dodeca(vertices):
+    # get smallest convex shape containing vertices
+    hull = ConvexHull(vertices)
+    min_corner = vertices.min(axis=0)
+    max_corner = vertices.max(axis=0)
+    
+    while True:
+        p = np.random.uniform(min_corner, max_corner)
+        # check if point is in dodeca using plane equations
+        if all(np.dot(eq[:3], p) + eq[3] <= 1e-12 for eq in hull.equations):
+            return p
 
 # golden ratio
 phi = 0.5 * (1 + np.sqrt(5))
@@ -34,7 +48,7 @@ vertices = np.array([
 # params for chaos game
 r = 0.72 # ratio for dodecahedron
 N = 30000 # number of points
-x = np.array([0.0, 0.0, 0.0])  # starting point
+x = random_point_dodeca(vertices) # starting point
 
 points = []
 labels = []

@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+# function to get random starting point
+def random_point_cube(min_corner, max_corner):
+    return np.random.uniform(min_corner, max_corner)
+
 # initialize cube centered at (0,0,0)
 vertices = np.array([
     # regular 8 vertices of a cube
@@ -31,7 +35,7 @@ vertices = np.array([
 # params for chaos game
 r = 2/3 # ratio for cube
 N = 40000 # number of points
-x = np.array([0.0, 0.0, 0.0])  # starting point
+x = random_point_cube([-1, -1, -1], [1, 1, 1])  # starting point
 
 points = []
 labels = []
