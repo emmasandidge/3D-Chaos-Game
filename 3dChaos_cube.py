@@ -19,7 +19,7 @@ vertices = np.array([
     [1, -1, 0.5],
     # extra edge points
     [0, -1, -0.5],
-    [-1, -1, 0.5],
+    [-1, -1, 0],
     [0, -1, 0.5],
     [1, -1, 0],
     [1, 0, -0.5],
@@ -34,7 +34,7 @@ vertices = np.array([
 
 # params for chaos game
 r = 2/3 # ratio for cube
-N = 40000 # number of points
+N = 20000 # number of points
 x = random_point_cube([-1, -1, -1], [1, 1, 1])  # starting point
 
 points = []
@@ -73,4 +73,5 @@ ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.set_zlabel("Z")
 
+plt.savefig("/Users/emmasandidge/projects25/appliedLA_fall25/cube.png")
 plt.show()

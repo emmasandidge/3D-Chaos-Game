@@ -86,4 +86,6 @@ ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.set_zlabel("Z")
 
+# save figure
+plt.savefig("/Users/emmasandidge/projects25/appliedLA_fall25/dodeca.png")
 plt.show()

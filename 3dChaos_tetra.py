@@ -59,4 +59,5 @@ ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.set_zlabel("Z")
 
+plt.savefig("/Users/emmasandidge/projects25/appliedLA_fall25/tetra.png")
 plt.show()
