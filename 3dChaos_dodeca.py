@@ -16,76 +16,92 @@ def random_point_dodeca(vertices):
         if all(np.dot(eq[:3], p) + eq[3] <= 1e-12 for eq in hull.equations):
             return p
 
-# golden ratio
-phi = 0.5 * (1 + np.sqrt(5))
+# build vertices for dodeca centered at (0,0,0)
+def build_vertices():
+    # golden ratio
+    phi = 0.5 * (1 + np.sqrt(5))
 
-# initialize dodecahedron centered at (0,0,0)
-vertices = np.array([
-    # cube vertices w/ +/- 1
-    [1, 1, 1],
-    [1, 1, -1],
-    [1, -1, 1],
-    [-1, 1, 1],
-    [-1, -1, 1],
-    [1, -1, -1],
-    [-1, 1, -1],
-    [-1,-1, -1],
-    # remaining 12 vertices
-    [ 0,  1/phi,  phi],
-    [ 0,  1/phi, -phi],
-    [ 0, -1/phi,  phi],
-    [ 0, -1/phi, -phi],
-    [ 1/phi,  phi,  0],
-    [ 1/phi, -phi,  0],
-    [-1/phi,  phi,  0],
-    [-1/phi, -phi,  0],
-    [ phi,  0,  1/phi],
-    [ phi,  0, -1/phi],
-    [-phi,  0,  1/phi],
-    [-phi,  0, -1/phi]
-], dtype=float)
+    # initialize dodecahedron centered at (0,0,0)
+    vertices = np.array([
+        # cube vertices w/ +/- 1
+        [1, 1, 1],
+        [1, 1, -1],
+        [1, -1, 1],
+        [-1, 1, 1],
+        [-1, -1, 1],
+        [1, -1, -1],
+        [-1, 1, -1],
+        [-1,-1, -1],
+        # remaining 12 vertices
+        [ 0,  1/phi,  phi],
+        [ 0,  1/phi, -phi],
+        [ 0, -1/phi,  phi],
+        [ 0, -1/phi, -phi],
+        [ 1/phi,  phi,  0],
+        [ 1/phi, -phi,  0],
+        [-1/phi,  phi,  0],
+        [-1/phi, -phi,  0],
+        [ phi,  0,  1/phi],
+        [ phi,  0, -1/phi],
+        [-phi,  0,  1/phi],
+        [-phi,  0, -1/phi]
+    ], dtype=float)
 
-# params for chaos game
-r = 0.72 # ratio for dodecahedron
-N = 30000 # number of points
-x = random_point_dodeca(vertices) # starting point
+    return vertices
 
-points = []
-labels = []
+def chaos_iter(r, N, x, vertices):
 
-# chaos game iteration
-for _ in range(N):
-    # choose random vertex
-    idx = np.random.randint(0,20)
-    v = vertices[idx]
-    # move a fraction r toward the vertex
-    x = x + r * (v - x)
-    # save x and label
-    points.append(x.copy())
-    labels.append(idx)
+    points = []
+    labels = []
 
-points = np.array(points)
-labels = np.array(labels)
+    # chaos game iteration
+    for _ in range(N):
+        # choose random vertex
+        idx = np.random.randint(0,20)
+        v = vertices[idx]
+        # move a fraction r toward the vertex
+        x = x + r * (v - x)
+        # save x and label
+        points.append(x.copy())
+        labels.append(idx)
 
-# define colors for plotting
-colors = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'orange', 'purple', 'brown', 'pink',        
-    'lime', 'teal', 'navy', 'maroon', 'gold', 'violet', 'gray', 'olive', 'deeppink']
+    points = np.array(points)
+    labels = np.array(labels)
 
-point_colors = [colors[i] for i in labels]
+    return points, labels
 
-# plotting 3D fractal
-fig = plt.figure(figsize=(10,10))
-ax = fig.add_subplot(111, projection='3d')
+# main function
+def main():
+    # params for chaos game
+    r = 0.72 # ratio for dodecahedron
+    N = 30000 # number of points
+    vertices = build_vertices()
+    x = random_point_dodeca(vertices) # starting point
 
-ax.scatter(points[:,0], points[:,1], points[:,2], c=point_colors, s=0.5)
+    points, labels = chaos_iter(r, N, x, vertices)
 
-# plot vertices
-ax.scatter(vertices[:,0], vertices[:,1], vertices[:,2], color='black', s=60)
+    # define colors for plotting
+    colors = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'orange', 'purple', 'brown', 'pink',        
+        'lime', 'teal', 'navy', 'maroon', 'gold', 'violet', 'gray', 'olive', 'deeppink']
 
-ax.set_xlabel("X")
-ax.set_ylabel("Y")
-ax.set_zlabel("Z")
+    point_colors = [colors[i] for i in labels]
 
-# save figure
-plt.savefig("/Users/emmasandidge/projects25/appliedLA_fall25/dodeca.png")
-plt.show()
+    # plotting 3D fractal
+    fig = plt.figure(figsize=(10,10))
+    ax = fig.add_subplot(111, projection='3d')
+
+    ax.scatter(points[:,0], points[:,1], points[:,2], c=point_colors, s=0.5)
+
+    # plot vertices
+    ax.scatter(vertices[:,0], vertices[:,1], vertices[:,2], color='black', s=60)
+
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+
+    # save figure and show
+    plt.savefig("/Users/emmasandidge/projects25/3D-Chaos-Game/fractal_images/dodeca.png")
+    plt.show()
+
+if __name__=='__main__':
+    main()
