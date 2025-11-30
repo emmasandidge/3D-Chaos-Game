@@ -4,7 +4,7 @@ An implementation of the Chaos Game to create 2D and 3D fractals via linear tran
 The main source code is located here, with the 3D implementation in Python. We also provide 2D examples as a reference via MATLAB code in PDF form.
 
 ## 2D Chaos Game
-[Fern Fractal](docs/FernFractal.pdf)
-[Hexagon Fractal](docs/HexagonFractal.pdf)
-[Pentagon Fractal](docs/PentagonFractal.pdf)
-[Square Fractal](docs/SquareFractal_VertexPref.pdf)
+- [Fern Fractal](https://github.com/emmasandidge/3D-Chaos-Game/raw/main/docs/FernFractal.pdf)  
+- [Hexagon Fractal](https://github.com/emmasandidge/3D-Chaos-Game/raw/main/docs/HexagonFractal.pdf)  
+- [Pentagon Fractal](https://github.com/emmasandidge/3D-Chaos-Game/raw/main/docs/PentagonFractal.pdf)  
+- [Square Fractal](https://github.com/emmasandidge/3D-Chaos-Game/raw/main/docs/SquareFractal_VertexPref.pdf)
