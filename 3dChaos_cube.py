@@ -59,7 +59,7 @@ def chaos_iter(r, N, x, vertices):
 def main():
     # params for chaos game
     r = 2/3 # ratio for cube
-    N = 20000 # number of points
+    N = 30000 # number of points
     x = random_point_cube([-1, -1, -1], [1, 1, 1])  # starting point
     vertices = build_vertices()
 
