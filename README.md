@@ -1,5 +1,5 @@
-# Applications of 2D and 2D Linear Transformations for Producing Fractals via a Chaos Game
-An implementation of the Chaos Game to create 2D and 3D fractals via linear transformations.
+# Applications of 2D and 3D Linear Transformations for Producing Fractals via a Chaos Game
+This project presents methods and examples of creating fractals in two and three dimensions using the Chaos Game.
 
 The main source code is located [here](code/), with the 3D implementation in Python. We also provide 2D examples as a reference via MATLAB code in PDF form.
 
