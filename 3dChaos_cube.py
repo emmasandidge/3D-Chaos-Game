@@ -17,21 +17,8 @@ def build_vertices():
         [-1, -1, 0.5],
         [-1, 1, 0.5],
         [-1, 1, -0.5],
-        [1, -1, 0.5],
-        # extra edge points
-        [0, -1, -0.5],
-        [-1, -1, 0],
-        [0, -1, 0.5],
-        [1, -1, 0],
-        [1, 0, -0.5],
-        [1, 1, 0],
-        [-1, 1, 0],
-        [1, 0, 0.5],
-        [-1, 0, 0.5],
-        [-1, 0, -0.5],
-        [0, 1, 0.5],
-        [0, 1, -0.5]
-    ], dtype=float)
+        [1, -1, 0.5]
+    ])
 
     return vertices
 
@@ -42,7 +29,7 @@ def chaos_iter(r, N, x, vertices):
     # chaos game iteration
     for _ in range(N):
         # choose random vertex
-        idx = np.random.randint(0,20)
+        idx = np.random.randint(0,8)
         v = vertices[idx]
         # move a fraction r toward the vertex
         x = x + r * (v - x)
